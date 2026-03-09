@@ -31,6 +31,30 @@ const socials = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
+  const handleMobileNav = (id) => (e) => {
+    e.preventDefault()
+
+    // Update the URL without relying on the browser's default hash scrolling.
+    try {
+      history.replaceState(null, "", `#${id}`)
+    } catch {
+      // no-op
+    }
+
+    // Close the menu first; then scroll after the exit animation.
+    setOpen(false)
+
+    window.setTimeout(() => {
+      const el = document.getElementById(id)
+      if (!el) return
+
+      const navbarOffsetPx = 20
+      const top = el.getBoundingClientRect().top + window.scrollY - navbarOffsetPx
+
+      window.scrollTo({ top, behavior: "smooth" })
+    }, 250)
+  }
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-4 pt-4">
       <div className="max-w-6xl mx-auto rounded-2xl border border-white/10 bg-slate-950/60 backdrop-blur">
@@ -90,21 +114,21 @@ export default function Navbar() {
                   <a
                     href="#about"
                     className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/10 transition"
-                    onClick={() => setOpen(false)}
+                    onClick={handleMobileNav("about")}
                   >
                     About
                   </a>
                   <a
                     href="#aisolutions"
                     className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/10 transition"
-                    onClick={() => setOpen(false)}
+                    onClick={handleMobileNav("aisolutions")}
                   >
                     AI Solutions
                   </a>
                   <a
                     href="#contact"
                     className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/10 transition"
-                    onClick={() => setOpen(false)}
+                    onClick={handleMobileNav("contact")}
                   >
                     Contact
                   </a>

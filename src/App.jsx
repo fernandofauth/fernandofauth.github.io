@@ -7,7 +7,7 @@ import AiSolutions from "./components/AiSolutions"
 
 export default function App() {
   return (
-    <div className="relative min-h-screen grid-bg">
+    <div className="relative min-h-screen grid-bg overflow-hidden">
       {/* background glow */}
       <div className="glow top-[-200px] left-1/2 -translate-x-1/2 absolute"></div>
 
