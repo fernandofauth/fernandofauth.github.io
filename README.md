@@ -27,6 +27,12 @@ Build for production:
 npm run build
 ```
 
+Build as a single self-contained `dist/index.html` (JS/CSS inlined):
+
+```bash
+npm run build:single
+```
+
 Preview the production build locally:
 
 ```bash
@@ -56,7 +62,17 @@ npm run lint:fix
 
 ## Deployment
 
-This repo is named like a GitHub Pages user site (`<username>.github.io`). For that setup, Vite’s `base` is correctly set to `/` in `vite.config.js`.
+This repo is named like a GitHub Pages user site (`<username>.github.io`). The included build uses relative asset URLs (`base: "./"` in `vite.config.js`), which works on GitHub Pages and also when opening `dist/index.html` directly.
 
 - Build output goes to `dist/`.
-- Any GitHub Pages deployment method that publishes `dist/` will work (for example, a GitHub Actions workflow that runs `npm ci` + `npm run build` and uploads `dist/`).
+- GitHub Pages is set up to deploy via GitHub Actions using `.github/workflows/deploy-pages.yml`.
+
+## Why the page can be blank after build
+
+If you open the build output directly (double-click `dist/index.html`), the page can appear blank when asset URLs are absolute (like `/assets/...`). This project is configured to use **relative** asset URLs, so `dist/index.html` works when opened directly and when hosted as static files.
+
+For the most reliable local check, use:
+
+```bash
+npm run preview
+```
