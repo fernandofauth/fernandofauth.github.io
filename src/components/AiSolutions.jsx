@@ -24,7 +24,7 @@ export default function AiSolutions() {
   ]
 
   return (
-    <section id="aisolutions" className="max-w-6xl mx-auto px-6 py-28">
+    <section id="aisolutions" className="min-h-screen supports-[height:100svh]:min-h-[100svh] max-w-6xl mx-auto px-6 py-28 scroll-mt-32">
 
       <h2 className="text-4xl font-bold mb-4">
         AI Solutions
@@ -64,6 +64,8 @@ export default function AiSolutions() {
         })}
 
       </div>
+
+      <a href="#contact" className="text-indigo-400 hover:underline mt-8 block">Let's discuss your automation needs →</a>
 
     </section>
   )
