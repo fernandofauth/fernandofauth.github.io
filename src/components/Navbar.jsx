@@ -67,6 +67,9 @@ export default function Navbar() {
             <a href="#about" className="hover:text-white transition">
               About
             </a>
+            <a href="#credentials" className="hover:text-white transition">
+              Credentials
+            </a>
             <a href="#aisolutions" className="hover:text-white transition">
               AI Solutions
             </a>
@@ -117,6 +120,13 @@ export default function Navbar() {
                     onClick={handleMobileNav("about")}
                   >
                     About
+                  </a>
+                  <a
+                    href="#credentials"
+                    className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/10 transition"
+                    onClick={handleMobileNav("credentials")}
+                  >
+                    Credentials
                   </a>
                   <a
                     href="#aisolutions"

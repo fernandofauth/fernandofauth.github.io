@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import About from "./components/About"
+import Credentials from "./components/Credentials"
 import Contact from "./components/Contact"
 import AiSolutions from "./components/AiSolutions"
 
@@ -10,6 +11,9 @@ function useSectionJumpScroll() {
     sections: /** @type {HTMLElement[]} */ ([]),
     currentIndex: 0,
     locked: false,
+    wheelIntent: 0,
+    lastWheelDirection: 0,
+    lastWheelAt: 0,
   })
 
   useEffect(() => {
@@ -87,6 +91,12 @@ function useSectionJumpScroll() {
       stateRef.current.locked = false
     }
 
+    const resetWheelIntent = () => {
+      stateRef.current.wheelIntent = 0
+      stateRef.current.lastWheelDirection = 0
+      stateRef.current.lastWheelAt = 0
+    }
+
     const onWheel = (event) => {
       if (event.ctrlKey) return
       if (stateRef.current.locked) return
@@ -110,7 +120,10 @@ function useSectionJumpScroll() {
           scrollContainer.scrollHeight - 1
 
         const atEdge = direction > 0 ? atBottom : atTop
-        if (!atEdge) return
+        if (!atEdge) {
+          resetWheelIntent()
+          return
+        }
       } else {
         const viewportHeight = window.visualViewport?.height ?? window.innerHeight
         const viewTop = window.scrollY
@@ -123,14 +136,31 @@ function useSectionJumpScroll() {
         const atTop = viewTop <= sectionTop + threshold
         const atBottom = viewBottom >= sectionBottom - threshold
         const atEdge = direction > 0 ? atBottom : atTop
-        if (!atEdge) return
+        if (!atEdge) {
+          resetWheelIntent()
+          return
+        }
       }
+
+      const now = Date.now()
+      const elapsed = now - stateRef.current.lastWheelAt
+
+      if (elapsed > 220 || stateRef.current.lastWheelDirection !== direction) {
+        stateRef.current.wheelIntent = 0
+      }
+
+      stateRef.current.wheelIntent += Math.abs(deltaY)
+      stateRef.current.lastWheelDirection = direction
+      stateRef.current.lastWheelAt = now
+
+      if (stateRef.current.wheelIntent < 140) return
 
       const nextIndex = currentIndex + direction
       if (nextIndex < 0 || nextIndex >= currentSections.length) return
 
       event.preventDefault()
       stateRef.current.locked = true
+      resetWheelIntent()
 
       scrollToSection(currentSections[nextIndex])
       window.setTimeout(releaseLock, 650)
@@ -158,6 +188,7 @@ export default function App() {
         <Navbar />
         <Hero />
         <About />
+        <Credentials />
         <AiSolutions />
         <Contact />
       </div>
