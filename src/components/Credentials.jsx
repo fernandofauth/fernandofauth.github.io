@@ -76,11 +76,12 @@ export default function Credentials() {
   return (
     <motion.section
       id="credentials"
+      data-scroll-offset="28"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen supports-[height:100svh]:min-h-[100svh] max-w-6xl mx-auto px-6 py-28 scroll-mt-32"
+      className="min-h-screen supports-[height:100svh]:min-h-[100svh] max-w-6xl mx-auto px-6 py-28 scroll-mt-0"
     >
       <div className="mb-10 md:mb-12 max-w-3xl">
         <span className="inline-flex items-center rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-indigo-200">
@@ -99,17 +100,13 @@ export default function Credentials() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {featuredCredentials.map(({ name, href, description }, index) => (
+        {featuredCredentials.map(({ name, href, description }) => (
           <motion.a
             key={name}
             href={href}
             target="_blank"
             rel="noreferrer"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, delay: index * 0.05 }}
-            className="group relative overflow-hidden rounded-2xl border border-indigo-400/25 bg-slate-950/50 p-5 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-indigo-300/45 hover:bg-slate-900/70"
+            className="group relative overflow-hidden rounded-2xl border border-indigo-400/25 bg-slate-950/50 p-5 backdrop-blur transition duration-300 hover:border-indigo-300/45 hover:bg-slate-900/70"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.18),transparent_52%)]" />
 
