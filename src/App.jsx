@@ -31,19 +31,28 @@ function useSectionJumpScroll() {
       return Math.max(12, Math.round(navHeight) + extra)
     }
 
-    const scrollToSectionMobile = (section) => {
-      const offset = getNavbarOffset(70)
+    const getSectionOffsetAdjustment = (section) => {
+      const rawOffset = Number(section.dataset.scrollOffset ?? 0)
+      return Number.isFinite(rawOffset) ? rawOffset : 0
+    }
 
-      const anchor = section.querySelector("[data-section-anchor], h2, h1")
-      const target = anchor instanceof HTMLElement ? anchor : section
+    const getSectionTarget = (section) => {
+      const anchor = section.querySelector("[data-section-anchor]")
+      return anchor instanceof HTMLElement ? anchor : section
+    }
+
+    const scrollToSectionMobile = (section) => {
+      const offset = getNavbarOffset(70 + getSectionOffsetAdjustment(section))
+      const target = getSectionTarget(section)
       const top = target.getBoundingClientRect().top + window.scrollY - offset
 
       window.scrollTo({ top, behavior: "smooth" })
     }
 
     const scrollToSectionDesktop = (section) => {
-      const offset = getNavbarOffset(12)
-      const top = section.getBoundingClientRect().top + window.scrollY - offset
+      const offset = getNavbarOffset(12 + getSectionOffsetAdjustment(section))
+      const target = getSectionTarget(section)
+      const top = target.getBoundingClientRect().top + window.scrollY - offset
       window.scrollTo({ top, behavior: "smooth" })
     }
 
