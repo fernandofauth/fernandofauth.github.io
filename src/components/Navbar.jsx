@@ -48,8 +48,12 @@ export default function Navbar() {
       const el = document.getElementById(id)
       if (!el) return
 
-      const navbarOffsetPx = 20
-      const top = el.getBoundingClientRect().top + window.scrollY - navbarOffsetPx
+      const rawOffset = Number(el.dataset.scrollOffset ?? 0)
+      const sectionOffset = Number.isFinite(rawOffset) ? rawOffset : 0
+      const target = el.querySelector("[data-section-anchor]")
+      const destination = target instanceof HTMLElement ? target : el
+      const navbarOffsetPx = 20 + sectionOffset
+      const top = destination.getBoundingClientRect().top + window.scrollY - navbarOffsetPx
 
       window.scrollTo({ top, behavior: "smooth" })
     }, 250)
