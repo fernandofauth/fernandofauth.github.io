@@ -1,4 +1,4 @@
-# Fernando Fauth — AI Automation Engineer (Website)
+# Fernando Fauth — AI Systems Engineer (Website)
 
 Personal website built with Vite + React and styled with Tailwind CSS.
 

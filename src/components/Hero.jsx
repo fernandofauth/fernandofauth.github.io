@@ -9,7 +9,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="text-6xl md:text-7xl font-bold tracking-tight"
       >
-        AI Automation Engineer
+        AI Systems Engineer
       </motion.h1>
 
       <motion.p
