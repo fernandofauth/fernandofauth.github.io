@@ -17,14 +17,9 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <p className="text-sm text-gray-400 mt-3">
-          Founder of <a href="https://duxko.com" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">Duxko</a>
-        </p>
-
-        <p className="text-xl text-gray-400 mt-6 max-w-xl">
-          15+ years building large-scale software systems,
-          now focused on AI agents and automation platforms.
-        </p>
+        <div className="text-xl text-gray-400 mt-6 max-w-xl">
+          I design and build complete systems — from architecture to production, including AI, backend, frontend, automation and infrastructure.
+        </div>
       </motion.p>
 
       <motion.a
