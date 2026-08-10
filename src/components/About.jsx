@@ -14,18 +14,21 @@ export default function About() {
       <div className="text-gray-400 leading-relaxed max-w-3xl space-y-6">
 
         <p>
-          For the last 15+ years I have worked on large scale software platforms —
+          For the last 15+ years I have worked on large-scale software platforms —
           mainly in ecommerce and production systems.
         </p>
 
         <p>
-          Today my focus is different.<br />
-          I'm building AI automation systems and exploring how software
-          production itself can evolve with AI.
+          Today, I’m building <a href="https://foloon.com" target="_blank" rel="noopener noreferrer" className="text-[#4FCBC4] hover:underline">Foloon</a>, an AI shopping assistant for ecommerce.
         </p>
 
         <p>
-          <a href="https://duxko.com" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">Duxko</a> is part of that exploration.
+          My focus is on building AI systems that can understand customers, products,
+          and intent — and turn that understanding into better shopping experiences.
+        </p>
+
+        <p>
+          <a href="https://duxko.com" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">Duxko</a> remains an ongoing venture exploring how AI can transform software production.
         </p>
 
       </div>
